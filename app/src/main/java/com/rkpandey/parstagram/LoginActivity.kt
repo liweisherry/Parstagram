@@ -16,9 +16,9 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         // check if user logged in. If it is, go to the main activity
-        if(ParseUser.getCurrentUser() != null){
-            goTOMainActivity()
-        }
+//        if(ParseUser.getCurrentUser() != null){
+//            goTOMainActivity()
+//        }
         findViewById<Button>(R.id.btn_login).setOnClickListener{
             val username = findViewById<EditText>(R.id.et_username).text.toString()
             val password = findViewById<EditText>(R.id.et_password).text.toString()
@@ -50,6 +50,8 @@ class LoginActivity : AppCompatActivity() {
             if (e == null) {
                 // Sign up succeeds
                 // Navigate the user to the main activity
+                Log.i(TAG, "Successfully login")
+                goTOMainActivity()
             } else {
                 // Sign up didn't succeed. Look at the ParseException
                 // to figure out what went wrong
