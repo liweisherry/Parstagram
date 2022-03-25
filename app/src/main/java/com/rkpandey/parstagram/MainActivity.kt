@@ -8,37 +8,49 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.parse.*
 
 import java.io.File
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.*
+
 
 class MainActivity : AppCompatActivity() {
     val CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034
     val photoFileName = "photo.jpg"
     var photoFile: File? = null
+    var miActionProgressItem: MenuItem? = null
+
+
+// run a background job and once complete
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+        getSupportActionBar()?.hide();
         // 1. Setting the description of the post
         // 2. A button to launch the camera to take a pic
         // 3. An ImageView to show the pic the user has taken
         // 4. A button to save and send the post to our Parse server
         findViewById<Button>(R.id.btnSubmit).setOnClickListener{
             val description = findViewById<EditText>(R.id.etDesctiption).text.toString()
+
             if(photoFile != null){
+//                showProgressBar()
+
+
                 submitPost(description, ParseUser.getCurrentUser(), photoFile!!)
+//                hideProgressBar()
+
             }else {
                 // print error log message
                 // show a toast to the user to let them know to take a pic
+                Toast.makeText(this, "No pic submitted", Toast.LENGTH_SHORT).show()
             }
+
         }
 
         findViewById<Button>(R.id.btnTakePic).setOnClickListener{
@@ -46,6 +58,25 @@ class MainActivity : AppCompatActivity() {
         }
         queryPost()
     }
+
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        // Store instance of the menu item containing progress
+        miActionProgressItem = menu.findItem(R.id.miActionProgress)
+
+        // Return to finish
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    fun showProgressBar() {
+        // Show progress item
+        miActionProgressItem!!.isVisible = true
+    }
+
+    fun hideProgressBar() {
+        // Hide progress item
+        miActionProgressItem!!.isVisible = false
+    }
+
     // Send a post object to our parse server
     fun submitPost(descrption: String, user:ParseUser, file:File){
         // Create the Post object
@@ -54,14 +85,21 @@ class MainActivity : AppCompatActivity() {
         post.setUser(user)
         post.setImage(ParseFile(file))
         Log.i(TAG, post.getImage()!!.name)
+        var pb = findViewById<ProgressBar>(R.id.pbLoading);
+        pb.visibility = ProgressBar.VISIBLE;
         post.saveInBackground{exception ->
             if (exception != null){
                 Log.e(TAG, "Error in saving post")
                 exception.printStackTrace()
+                pb.visibility = ProgressBar.INVISIBLE;
             }else{
                 Log.i(TAG, "Successfully saved post")
+                pb.visibility = ProgressBar.INVISIBLE;
                 // Resting the EditText, ImageView to empty
-
+                val ivPreview: ImageView = findViewById(R.id.ivPic)
+                ivPreview.setImageResource(0)
+                val description = findViewById<EditText>(R.id.etDesctiption).text
+                description.clear()
             }
 
         }
@@ -147,6 +185,7 @@ class MainActivity : AppCompatActivity() {
         // Return the file target for the photo based on filename
         return File(mediaStorageDir.path + File.separator + fileName)
     }
+
 
     companion object {
         const val TAG = "MainActivity"

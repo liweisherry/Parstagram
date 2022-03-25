@@ -14,11 +14,11 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        getSupportActionBar()?.hide();
         // check if user logged in. If it is, go to the main activity
-//        if(ParseUser.getCurrentUser() != null){
-//            goTOMainActivity()
-//        }
+        if(ParseUser.getCurrentUser() != null){
+            goTOMainActivity()
+        }
         findViewById<Button>(R.id.btn_login).setOnClickListener{
             val username = findViewById<EditText>(R.id.et_username).text.toString()
             val password = findViewById<EditText>(R.id.et_password).text.toString()
