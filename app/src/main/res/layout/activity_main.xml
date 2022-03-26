@@ -18,15 +18,15 @@
 
     <EditText
         android:id="@+id/etDesctiption"
-        android:layout_width="382dp"
-        android:layout_height="115dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="371dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="88dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:maxLines="5"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
