@@ -10,8 +10,12 @@
         <entry key="..\:/Documents/android_projects/Parstagram/app/src/main/res/drawable/ufi_save_icon.xml" value="0.17708333333333334" />
         <entry key="..\:/Documents/android_projects/Parstagram/app/src/main/res/layout/action_view_progress.xml" value="0.3" />
         <entry key="..\:/Documents/android_projects/Parstagram/app/src/main/res/layout/activity_login.xml" value="0.30052083333333335" />
-        <entry key="..\:/Documents/android_projects/Parstagram/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Documents/android_projects/Parstagram/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
+        <entry key="..\:/Documents/android_projects/Parstagram/app/src/main/res/layout/fragment_compose.xml" value="0.30052083333333335" />
+        <entry key="..\:/Documents/android_projects/Parstagram/app/src/main/res/layout/fragment_home.xml" value="0.30052083333333335" />
+        <entry key="..\:/Documents/android_projects/Parstagram/app/src/main/res/layout/item_posts.xml" value="0.30052083333333335" />
         <entry key="..\:/Documents/android_projects/Parstagram/app/src/main/res/menu/activity_main.xml" value="0.3" />
+        <entry key="..\:/Documents/android_projects/Parstagram/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.30052083333333335" />
         <entry key="..\:/Documents/android_projects/Parstagram/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.17708333333333334" />
         <entry key="..\:/Documents/android_projects/Parstagram/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.17708333333333334" />
       </map>
